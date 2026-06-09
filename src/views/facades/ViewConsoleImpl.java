@@ -144,7 +144,11 @@ public class ViewConsoleImpl implements IView{
 
     @Override
     public String saisirNid() {
-        return LectureConsole.lectureChaineCaracteres("Saisir le nid (10 caractère max) : ");
+        String type = LectureConsole.lectureChaineCaracteres("Saisir le nid (10 caractère max) : ");
+        if (type.length() != 10) {
+            return saisirNid();
+        }
+        return type;
     }
 
     @Override

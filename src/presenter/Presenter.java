@@ -39,7 +39,7 @@ public class Presenter {
     ));
     private final int TAILLE_MENU_PRINCIPAL = MENU_PRINCIPAL.size();
 
-    public void start(){
+    public void start() {
 
         int choix;
         do {
@@ -49,7 +49,7 @@ public class Presenter {
         } while (choix != CHOIX_SORTIE);
     }
 
-    private void gestionMenu(int choix){
+    private void gestionMenu(int choix) {
         switch (choix) {
             case 1 -> saisirDrone();
             case 2 -> afficherDrones();
@@ -64,17 +64,11 @@ public class Presenter {
 
     //CHOIX 1
 
-    private void saisirDrone(){
-        String nom = view.entrerNom();
-        TypeDrone typeDrone;
+    private void saisirDrone() {
         try {
-            typeDrone = view.choisirEnum(TypeDrone.class, TypeDrone::name);
-        } catch (ViewException e) {
-            view.afficherMessage("Erreur lors du choix du type de drone");
-            return;
-        }
-        int tempsAutonomie = view.choisirAutonomieMax();
-        try {
+            String nom = view.entrerNom();
+            TypeDrone typeDrone = view.choisirEnum(TypeDrone.class, TypeDrone::name);
+            int tempsAutonomie = view.choisirAutonomieMax();
             GenreDrone genreDrone = view.choisirEnum(GenreDrone.class, GenreDrone::name);
             switch (genreDrone) {
                 case AERIEN -> {
@@ -98,13 +92,13 @@ public class Presenter {
             }
             view.afficherMessage("Drone bien créé !");
         } catch (ViewException | FactoryException e) {
-            view.afficherMessage("Erreur lors de la création du drone");
+            view.afficherMessage("Erreur lors de la création du drone : " + e.getMessage());
         }
     }
 
     //CHOIX 2
 
-    private void afficherDrones(){
+    private void afficherDrones() {
         List<Drone> drones = model.getAllDrones();
         view.afficherTousLesDrones(drones);
     }
@@ -132,7 +126,7 @@ public class Presenter {
 
     //CHOIX 4
 
-    private void afficherPilotes(){
+    private void afficherPilotes() {
         List<Pilote> pilotes = model.getAllPilotes();
         view.afficherTousLesPilotes(pilotes);
     }
@@ -153,7 +147,7 @@ public class Presenter {
 
     //CHOIX 6
 
-    private void ajouterDroneAUnPilote(){
+    private void ajouterDroneAUnPilote() {
         try {
             Pilote piloteChoisi = view.choisirDansListe(
                     model.getAllPilotes(),
@@ -176,7 +170,7 @@ public class Presenter {
 
     //CHOIX 7
 
-    private void utiliserUnDrone(){
+    private void utiliserUnDrone() {
         try {
             Pilote piloteChoisi = view.choisirDansListe(
                     model.getAllPilotes(),
@@ -216,8 +210,7 @@ public class Presenter {
                 }
                 view.afficherMessage(drone.getNom() + " rechargé !");
             }
-        }
-        catch (ViewException e) {
+        } catch (ViewException e) {
             view.afficherMessage(e.getMessage());
         }
     }

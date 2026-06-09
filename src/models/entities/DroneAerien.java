@@ -13,7 +13,8 @@ public class DroneAerien extends Drone{
         return altitudeMax;
     }
 
-    public void setAltitudeMax(int altitudeMax) {
+    public void setAltitudeMax(int altitudeMax) throws EntityException {
+        if (altitudeMax < 1 || altitudeMax > 120) throw new EntityException("Altitude Max doit etre entre 1 et 120 mètre(s)");
         this.altitudeMax = altitudeMax;
     }
 

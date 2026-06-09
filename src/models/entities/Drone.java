@@ -32,7 +32,8 @@ public abstract class Drone extends AbstractEntity {
         return type;
     }
 
-    public void setType(TypeDrone type) {
+    public void setType(TypeDrone type) throws EntityException {
+        if (type == null) throw new EntityException("Le type ne peut pas être null");
         this.type = type;
     }
 
@@ -59,7 +60,8 @@ public abstract class Drone extends AbstractEntity {
         return tempsAutonomieMax;
     }
 
-    public void setTempsAutonomieMax(int tempsAutonomieMax) {
+    public void setTempsAutonomieMax(int tempsAutonomieMax) throws EntityException {
+        if (tempsAutonomieMax < 1) throw new EntityException("L'autonomie max ne peut pas être négatif !");
         this.tempsAutonomieMax = tempsAutonomieMax;
     }
 

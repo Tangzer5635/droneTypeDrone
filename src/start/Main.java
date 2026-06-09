@@ -11,17 +11,13 @@ import views.facades.ViewConsoleImpl;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            IModel model = new ModelImpl();
-            IView view = new ViewConsoleImpl();
+        IModel model = new ModelImpl();
+        IView view = new ViewConsoleImpl();
 
-            Presenter presenteur = new Presenter(model, view);
+        Presenter presenteur = new Presenter(model, view);
 
-            presenteur.start();
-        }
-        catch (FactoryException | EntityException f){
-            System.out.println("Erreur init "+f.getMessage());
-        }
+        presenteur.start();
+
 
     }
 }

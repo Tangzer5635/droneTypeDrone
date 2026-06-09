@@ -48,21 +48,17 @@ public class Pilote extends AbstractEntity {
     }
 
     public void addDrone(Drone drone) throws EntityException {
-
         if (drones.contains(drone)) {
             throw new EntityException(
                     "Le pilote possède déjà ce drone."
             );
         }
-
         if (drone instanceof DroneTerrestre
                 && grade.ordinal() < Grade.ADJUDANT_CHEF.ordinal()) {
-
             throw new EntityException(
                     "Un pilote de grade inférieur à Adjudant-Chef ne peut pas posséder de drone terrestre."
             );
         }
-
         drones.add(drone);
     }
 
@@ -81,11 +77,12 @@ public class Pilote extends AbstractEntity {
     @Override
     public String displayable() {
         return """
-            [Pilote] %s %s, ayant volé au total %s heure(s)
+            [Pilote] %s %s, ayant volé au total %s heure(s) ayant comme NID : %s
             """.formatted(
                 getGrade(),
                 getNom(),
-                getTempsVolTotal()
+                getTempsVolTotal(),
+                getNid()
         );
     }
 

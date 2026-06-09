@@ -4,7 +4,7 @@ public enum Grade {
     SERGENT("SGT","OR-5"),
     SERGENT_CHEF("SCH","OR-6"),
     ADJUDANT("ADJ", "OR-7"),
-    ADJUDANT_CHEF("ADC","OR-9"),
+    ADJUDANT_CHEF("ADC","OR-8"),
     MAJOR("MAJ","OR-9");
 
     private final String trigramme;

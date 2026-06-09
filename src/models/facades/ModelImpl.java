@@ -6,6 +6,7 @@ import models.exceptions.EntityException;
 import models.exceptions.FactoryException;
 import models.references.Grade;
 import models.references.TypeDrone;
+import views.utils.AffichageConsole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,12 @@ public class ModelImpl implements IModel{
     IPiloteDao piloteDao = DaoFactory.getPiloteDao();
 
 
-    public ModelImpl() throws FactoryException, EntityException {
+    public ModelImpl(){
         init();
     }
 
-    private void init() throws FactoryException, EntityException{
+    private void init(){
+        try {
             DroneAerien dA1 = FactoryEntities.createDroneAerien("DJI Combat V1", TypeDrone.COMBAT, 12, 50);
             DroneTerrestre dT1 = FactoryEntities.createDroneTerrestre("COSMO Soutien V4", TypeDrone.SOUTIEN, 10);
 
@@ -32,6 +34,10 @@ public class ModelImpl implements IModel{
 
             addNewPilote(p1);
             p1.addDrone(dA1);
+        }catch (FactoryException | EntityException e){
+            AffichageConsole.afficherMessageAvecSautLigne(("[Erreur init] " + e.getMessage()).replaceAll("'", ""));
+        }
+
     }
 
 
